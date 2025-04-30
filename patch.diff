@@ -1,0 +1,83 @@
+diff --git a/Assets/NuGet.config.meta b/Assets/NuGet.config.meta
+index 269c941..cad7c8c 100644
+--- a/Assets/NuGet.config.meta
++++ b/Assets/NuGet.config.meta
+@@ -1,2 +1,28 @@
+ fileFormatVersion: 2
+-guid: e57bc9da275fb214ca9621816dec3469
+\ No newline at end of file
++guid: e57bc9da275fb214ca9621816dec3469
++labels:
++- NuGetForUnity
++PluginImporter:
++  externalObjects: {}
++  serializedVersion: 3
++  iconMap: {}
++  executionOrder: {}
++  defineConstraints: []
++  isPreloaded: 0
++  isOverridable: 0
++  isExplicitlyReferenced: 0
++  validateReferences: 1
++  platformData:
++    Any:
++      enabled: 0
++      settings: {}
++    Editor:
++      enabled: 0
++      settings:
++        DefaultValueInitialized: true
++    WindowsStoreApps:
++      enabled: 0
++      settings: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/Scripts/GameUIScript.cs b/Assets/Scripts/GameUIScript.cs
+deleted file mode 100644
+index e900209..0000000
+--- a/Assets/Scripts/GameUIScript.cs
++++ /dev/null
+@@ -1,9 +0,0 @@
+-using UnityEngine;
+-
+-public class GameUIScript : MonoBehaviour
+-{
+-    public void SetUI()
+-    {
+-        ChangerScene.Load(ChangerScene.Scene.UI);
+-    }
+-}
+diff --git a/Assets/Scripts/GameUIScript.cs.meta b/Assets/Scripts/GameUIScript.cs.meta
+deleted file mode 100644
+index 20212bb..0000000
+--- a/Assets/Scripts/GameUIScript.cs.meta
++++ /dev/null
+@@ -1,2 +0,0 @@
+-fileFormatVersion: 2
+-guid: f29383e3c2c2d6c4a9eec6dc1bd1152f
+\ No newline at end of file
+diff --git a/Assets/Scripts/ScriptUI.cs b/Assets/Scripts/ScriptUI.cs
+deleted file mode 100644
+index 6748594..0000000
+--- a/Assets/Scripts/ScriptUI.cs
++++ /dev/null
+@@ -1,9 +0,0 @@
+-using UnityEngine;
+-
+-public class ScriptUI : MonoBehaviour
+-{
+-    public void SetGameUI()
+-    {
+-        ChangerScene.Load(ChangerScene.Scene.GameUI);
+-    }
+-}
+diff --git a/Assets/Scripts/ScriptUI.cs.meta b/Assets/Scripts/ScriptUI.cs.meta
+deleted file mode 100644
+index 0207f35..0000000
+--- a/Assets/Scripts/ScriptUI.cs.meta
++++ /dev/null
+@@ -1,2 +0,0 @@
+-fileFormatVersion: 2
+-guid: 6751500fe75e89742bf893b45dd510ad
+\ No newline at end of file
