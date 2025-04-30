@@ -1,0 +1,2 @@
+# NakaNoSekai-Mobile-
+MobileGame "NakaNoSekai"
