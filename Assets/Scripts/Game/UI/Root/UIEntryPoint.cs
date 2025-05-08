@@ -7,9 +7,10 @@ public class UIEntryPoint : MonoBehaviour
     int width;
     int height;
     // ReSharper disable Unity.PerformanceAnalysis
-    public Observable<UIExitParams> Run(UIRootView uiRoot, UIEnterParams uiEnterParams)
+    public Observable<UIExitParams> Run(DIContainer container, UIEnterParams uiEnterParams)
     {
         var uiScene = Instantiate(_sceneUIRootPrefab);
+        var uiRoot = container.Resolve<UIRootView>();
         uiRoot.AttachSceneUI(uiScene.gameObject);
 
         var exitSceneSignalSubj = new Subject<Unit>();

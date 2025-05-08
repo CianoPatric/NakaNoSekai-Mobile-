@@ -5,11 +5,11 @@ public class GameUIEntryPoint : MonoBehaviour
 {
     [SerializeField] private GameUIRootBinder _sceneUIRootPrefab;
     // ReSharper disable Unity.PerformanceAnalysis
-    public Observable<GameUIExitParams> Run(UIRootView uiRoot, GameUIEnterParams gameUIEnterParams)
+    public Observable<GameUIExitParams> Run(DIContainer container, GameUIEnterParams gameUIEnterParams)
     {
         var uiScene = Instantiate(_sceneUIRootPrefab);
+        var uiRoot = container.Resolve<UIRootView>();
         uiRoot.AttachSceneUI(uiScene.gameObject);
-
         var exitSceneSignalSubj = new Subject<Unit>();
         uiScene.Bind(exitSceneSignalSubj);
         Debug.Log($"{gameUIEnterParams.Width}x{gameUIEnterParams.Height}");

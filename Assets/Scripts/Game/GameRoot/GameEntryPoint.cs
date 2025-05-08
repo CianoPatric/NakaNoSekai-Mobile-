@@ -9,6 +9,8 @@ public class GameEntryPoint
     private static GameEntryPoint _instance;
     private Coroutines _coroutines;
     private UIRootView _uiRoot;
+    private readonly DIContainer _rootContainer = new();
+    private DIContainer CashContainer;
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void FirstLoad()
     {
@@ -25,6 +27,7 @@ public class GameEntryPoint
         var prefabUIRoot = Resources.Load<UIRootView>("UIRoot");
         _uiRoot = Object.Instantiate(prefabUIRoot);
         Object.DontDestroyOnLoad(_uiRoot.gameObject);
+        _rootContainer.RegisterInstance(_uiRoot);
     }
     private void StartAPP()
     {
@@ -51,11 +54,13 @@ public class GameEntryPoint
     private IEnumerator LoadAndStartAPP(UIEnterParams enterParams = null)
     {
         _uiRoot.ShowLoadingScreen();
+        CashContainer?.Dispose();
         yield return LoadScene("Boot");
         yield return LoadScene("UI");
         yield return new WaitForSeconds(0.5f);
         var sceneEntryPoint = Object.FindFirstObjectByType<UIEntryPoint>();
-        sceneEntryPoint.Run(_uiRoot, enterParams).Subscribe(uiExitParams =>
+        var UIContainer = CashContainer = new DIContainer(_rootContainer);
+        sceneEntryPoint.Run(UIContainer, enterParams).Subscribe(uiExitParams =>
         {
             var targetSceneName = uiExitParams.TargetSceneEnterParams.SceneName;
             if (targetSceneName == "GameUI")
@@ -72,11 +77,13 @@ public class GameEntryPoint
     private IEnumerator LoadAndStartGameUI(GameUIEnterParams gameUIEnterParams)
     {
         _uiRoot.ShowLoadingScreen();
+        CashContainer?.Dispose();
         yield return LoadScene("Boot");
         yield return LoadScene("GameUI");
         yield return new WaitForSeconds(0.5f);
         var sceneEntryPoint = Object.FindFirstObjectByType<GameUIEntryPoint>();
-        sceneEntryPoint.Run(_uiRoot, gameUIEnterParams).Subscribe(gameUIExitParams =>
+        var gameUIContainer = CashContainer = new DIContainer(_rootContainer);
+        sceneEntryPoint.Run(gameUIContainer, gameUIEnterParams).Subscribe(gameUIExitParams =>
         {
             _coroutines.StartCoroutine(LoadAndStartAPP(gameUIExitParams.UIEnterParams));
         });
