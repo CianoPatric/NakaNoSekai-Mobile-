@@ -1,3 +1,5 @@
+using Game.GameUI.Root;
+using Game.GameUI.Root.View;
 using UnityEngine;
 using R3;
 
@@ -7,8 +9,13 @@ public class GameUIEntryPoint : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     public Observable<GameUIExitParams> Run(DIContainer container, GameUIEnterParams gameUIEnterParams)
     {
+        GameUIRegistrationDI.Register(container, gameUIEnterParams);
+        var gameUIViewModelContainer = new DIContainer(container);
+        GameUIViewDIRegistration.Register(gameUIViewModelContainer);
+        
         var uiScene = Instantiate(_sceneUIRootPrefab);
         var uiRoot = container.Resolve<UIRootView>();
+        
         uiRoot.AttachSceneUI(uiScene.gameObject);
         var exitSceneSignalSubj = new Subject<Unit>();
         uiScene.Bind(exitSceneSignalSubj);
