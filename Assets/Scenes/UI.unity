@@ -149,6 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneUIRootPrefab: {fileID: 9119606007524549935, guid: 684154c321ade4246b4568930c99a51a, type: 3}
+  _gridSizePicker: {fileID: 0}
+  width: 0
+  height: 0
 --- !u!4 &1573710928
 Transform:
   m_ObjectHideFlags: 0
