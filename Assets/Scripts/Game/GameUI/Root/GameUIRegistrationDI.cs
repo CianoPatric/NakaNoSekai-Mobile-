@@ -4,7 +4,7 @@ namespace Game.GameUI.Root
     {
         public static void Register(DIContainer container, GameUIEnterParams gameEnterParams)
         {
-            
+            container.RegisterInstance(gameEnterParams);
         }
     }
 }

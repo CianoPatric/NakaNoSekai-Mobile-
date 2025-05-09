@@ -1,3 +1,4 @@
+using Game.GameRoot;
 using Game.GameUI.Root;
 using Game.GameUI.Root.View;
 using UnityEngine;
@@ -19,7 +20,8 @@ public class GameUIEntryPoint : MonoBehaviour
         uiRoot.AttachSceneUI(uiScene.gameObject);
         var exitSceneSignalSubj = new Subject<Unit>();
         uiScene.Bind(exitSceneSignalSubj);
-        Debug.Log($"{gameUIEnterParams.Width}x{gameUIEnterParams.Height}");
+        var grid = Object.FindFirstObjectByType<BuildingsGrid>();
+        (grid as IInjectable)?.Inject(container);
         var enterParams = new UIEnterParams("Fatality");
         var exitParams = new GameUIExitParams(enterParams);
         var exitToUISceneSignal = exitSceneSignalSubj.Select(_ => exitParams);
