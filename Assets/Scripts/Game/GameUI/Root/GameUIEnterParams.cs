@@ -1,5 +1,4 @@
 using Game.GameRoot;
-using UnityEngine;
 
 public class GameUIEnterParams: SceneEnterParams
 {

@@ -480,6 +480,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1184295089}
+  - component: {fileID: 1184295090}
   m_Layer: 0
   m_Name: CreateMap
   m_TagString: Untagged
@@ -502,6 +503,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1184295090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184295088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178d22f99f4e7b54183d1606f8c4b0ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridSize: {x: 0, y: 0}
+  Width: 0
+  Height: 0
+  PrefabOnCard: {fileID: 2710014730384403464, guid: 4a6f3488ad70eb54eb20f3be306a5d6c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

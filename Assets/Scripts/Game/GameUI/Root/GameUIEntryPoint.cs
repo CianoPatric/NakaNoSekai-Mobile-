@@ -20,6 +20,7 @@ public class GameUIEntryPoint : MonoBehaviour
         uiRoot.AttachSceneUI(uiScene.gameObject);
         var exitSceneSignalSubj = new Subject<Unit>();
         uiScene.Bind(exitSceneSignalSubj);
+        Debug.Log($"{gameUIEnterParams.Width} x {gameUIEnterParams.Height}");
         var grid = Object.FindFirstObjectByType<BuildingsGrid>();
         (grid as IInjectable)?.Inject(container);
         var enterParams = new UIEnterParams("Fatality");

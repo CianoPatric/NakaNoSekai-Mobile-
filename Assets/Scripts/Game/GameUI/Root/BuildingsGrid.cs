@@ -1,7 +1,5 @@
 using Game.GameRoot;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 public class BuildingsGrid : MonoBehaviour, IInjectable
 {
@@ -16,17 +14,17 @@ public class BuildingsGrid : MonoBehaviour, IInjectable
         var enterParams = container.Resolve<GameUIEnterParams>();
         Width = enterParams.Width;
         Height = enterParams.Height;
-        Debug.Log($"[UIEntryPoint] <UNK> <UNK> <UNK>: {Width} x {Height}");
-    }
-    public void Generate()
-    {
         GridSize = new Vector2Int(Width, Height);
+        Generate();
+    }
+    private void Generate()
+    {
         grid = new Building[GridSize.x, GridSize.y];
         for (int i = 0; i < GridSize.x; i++)
         {
             for (int j = 0; j < GridSize.y; j++)
             {
-                
+                Instantiate(PrefabOnCard, new Vector3(i, 0, j), Quaternion.identity);
             }
         }
     }
