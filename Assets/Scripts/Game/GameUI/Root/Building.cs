@@ -1,4 +1,3 @@
-using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -20,14 +19,14 @@ public class Building : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        CurrentBuilding = Instantiate(PrefabOnCard, Input.touches[0].position, Quaternion.identity);
+        CurrentBuilding = Instantiate(PrefabOnCard, eventData.position, Quaternion.identity);
     }
     public void OnDrag(PointerEventData eventData)
     {
         if(CurrentBuilding != null)
         {
             var groundPlane = new Plane(Vector3.up, Vector3.zero);
-            Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+            Ray ray = Camera.main.ScreenPointToRay(eventData.position);
             if(groundPlane.Raycast(ray, out float pos))
             {
                 Vector3 worldPosition = ray.GetPoint(pos);

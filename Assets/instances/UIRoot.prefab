@@ -1276,16 +1276,48 @@ PrefabInstance:
       value: StartGameButton (3)
       objectReference: {fileID: 0}
     - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2721172846087713162}
+    - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 9119606007524549935}
     - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ApplySelection
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: HandleGoToGameButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Game.UI.Root.View.GridSizePicker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UIRootBinder, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405855238652690962, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8441321937523025227, guid: 73231d921f6c9c845975b01c7820a508, type: 3}
       propertyPath: m_AnchorMax.y
