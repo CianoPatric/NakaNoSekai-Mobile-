@@ -22,6 +22,8 @@ public class GameUIEntryPoint : MonoBehaviour
         uiScene.Bind(exitSceneSignalSubj);
         Debug.Log($"{gameUIEnterParams.Width} x {gameUIEnterParams.Height}");
         var grid = Object.FindFirstObjectByType<BuildingsGrid>();
+        var cam = Object.FindFirstObjectByType<ControllCamera>();
+        (cam as IInjectable)?.Inject(container);
         (grid as IInjectable)?.Inject(container);
         var enterParams = new UIEnterParams("Fatality");
         var exitParams = new GameUIExitParams(enterParams);
