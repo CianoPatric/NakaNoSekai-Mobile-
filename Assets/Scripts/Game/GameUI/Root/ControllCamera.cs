@@ -1,4 +1,3 @@
-using System;
 using Game.GameRoot;
 using UnityEngine;
 
@@ -19,6 +18,14 @@ namespace Game.GameUI.Root
         private float touchCoolDown = 0.15f;
         private Vector3 target;
 
+        public bool canControl = true;
+        public static ControllCamera Instance { get; private set; }
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         public void Inject(DIContainer container)
         {
             var enterParams = container.Resolve<GameUIEnterParams>();
@@ -38,23 +45,26 @@ namespace Game.GameUI.Root
 
         private void LateUpdate()
         {
-            switch (Input.touchCount)
+            if (canControl == true)
             {
-                case 1:
-                    if (Time.time - lastZoomTime > touchCoolDown)
-                    {
-                        currentMode = TouchMode.Swipe;
-                        HandleSwip(Input.GetTouch(0));
-                    } 
-                    break;
-                case 2:
-                    currentMode = TouchMode.Zoom;
-                    lastZoomTime = Time.time;
-                    HandleZoom(Input.GetTouch(0), Input.GetTouch(1));
-                    break;
-                default:
-                    currentMode = TouchMode.None;
-                    break;
+                switch (Input.touchCount)
+                {
+                    case 1:
+                        if (Time.time - lastZoomTime > touchCoolDown)
+                        {
+                            currentMode = TouchMode.Swipe;
+                            HandleSwip(Input.GetTouch(0));
+                        } 
+                        break;
+                    case 2:
+                        currentMode = TouchMode.Zoom;
+                        lastZoomTime = Time.time;
+                        HandleZoom(Input.GetTouch(0), Input.GetTouch(1));
+                        break;
+                    default:
+                        currentMode = TouchMode.None;
+                        break;
+                }   
             }
         }
 

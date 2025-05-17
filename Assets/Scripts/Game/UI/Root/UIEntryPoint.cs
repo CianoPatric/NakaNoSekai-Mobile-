@@ -26,7 +26,6 @@ public class UIEntryPoint : MonoBehaviour
         {
             gridSizePicker.OnSizeSelected.Subscribe(newParams =>
             {
-                Debug.Log($"[UIEntryPoint] Получены новые размеры: {newParams.Width} x {newParams.Height}");
                 enterParams = new GameUIEnterParams(newParams.Width, newParams.Height);
                 var exitParams = new UIExitParams(enterParams);
                 exitSceneSignalSubj.OnNext(exitParams);

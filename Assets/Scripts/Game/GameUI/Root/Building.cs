@@ -1,12 +1,15 @@
+using System;
+using Game.GameUI.Root;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Object = UnityEngine.Object;
 
 public class Building : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public Vector2Int buildSize = Vector2Int.one;
     private GameObject CurrentBuilding;
     public GameObject PrefabOnCard;
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         for(int x = 0; x < buildSize.x; x++)
         {
@@ -17,8 +20,10 @@ public class Building : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
             }
         }
     }
+    
     public void OnBeginDrag(PointerEventData eventData)
     {
+        ControllCamera.Instance.canControl = false;
         CurrentBuilding = Instantiate(PrefabOnCard, eventData.position, Quaternion.identity);
     }
     public void OnDrag(PointerEventData eventData)
@@ -38,6 +43,6 @@ public class Building : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-
+        ControllCamera.Instance.canControl = true;
     }
 }

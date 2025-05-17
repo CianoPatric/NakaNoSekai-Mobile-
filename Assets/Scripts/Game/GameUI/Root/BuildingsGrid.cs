@@ -7,7 +7,7 @@ public class BuildingsGrid : MonoBehaviour, IInjectable
     public int Width;
     public int Height;
     private Building[,] grid;
-    public GameObject PrefabOnCard;
+    public GameObject PrefabY;
 
     public void Inject(DIContainer container)
     {
@@ -15,6 +15,7 @@ public class BuildingsGrid : MonoBehaviour, IInjectable
         Width = enterParams.Width;
         Height = enterParams.Height;
         GridSize = new Vector2Int(Width, Height);
+        grid = new Building[Width, Height];
         Generate();
     }
     private void Generate()
@@ -24,7 +25,7 @@ public class BuildingsGrid : MonoBehaviour, IInjectable
         {
             for (int j = 0; j < GridSize.y; j++)
             {
-                Instantiate(PrefabOnCard, new Vector3(i, 0, j), Quaternion.identity);
+                Instantiate(PrefabY, new Vector3(i, 0, j), Quaternion.identity);
             }
         }
     }
