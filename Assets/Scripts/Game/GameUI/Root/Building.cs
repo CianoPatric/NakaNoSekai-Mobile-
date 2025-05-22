@@ -1,4 +1,3 @@
-using System;
 using Game.GameUI.Root;
 using UnityEngine;
 using UnityEngine.EventSystems;
