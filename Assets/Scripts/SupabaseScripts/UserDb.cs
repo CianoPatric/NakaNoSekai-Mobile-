@@ -21,6 +21,10 @@ public class UserDb : BaseModel
 
     public UserDb() { }
 
+    public UserDb(string Nickname)
+    {
+        nickname = Nickname;
+    }
     public UserDb(string NickName, string Password)
     {
         nickname = NickName;
@@ -37,13 +41,13 @@ public class UserDb : BaseModel
                 .Filter("NickName", Supabase.Postgrest.Constants.Operator.Equals, userDb.nickname)
                 .Filter("Password", Supabase.Postgrest.Constants.Operator.Equals, userDb.password)
                 .Single();
-            return ID.userid;
+            if (ID != null) return ID.userid;
         }
         catch (Exception ex)
         {
-            Debug.Log("Ошибка: " + ex.Message);
-            return -1;
+            Debug.Log("Ошибка9: " + ex.Message);
         }
+        return -1;
     }
     public static async Task<bool> AuthenticateUserAsync(Client client, UserDb userA)
     {
@@ -66,7 +70,7 @@ public class UserDb : BaseModel
         }
         catch (Exception ex)
         {
-            Debug.Log($"Ошибка: {ex.Message}");
+            Debug.Log($"Ошибка5: {ex.Message}");
             return false;
         }
     }
@@ -93,7 +97,7 @@ public class UserDb : BaseModel
                 }
                 catch (Exception ex)
                 {
-                    Debug.Log("Ошибка: " + ex.Message);
+                    Debug.Log("Ошибка4: " + ex.Message);
                     return false;
                 }
             }

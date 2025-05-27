@@ -6,9 +6,9 @@ using R3;
 public class UIEntryPoint : MonoBehaviour
 {
     [SerializeField] private UIRootBinder _sceneUIRootPrefab;
-    public int width;
-    public int height;
-    // ReSharper disable Unity.PerformanceAnalysis
+
+    private Subject<UIExitParams> _exitSceneSignalSubj = new();
+
     public Observable<UIExitParams> Run(DIContainer container, UIEnterParams uiEnterParams)
     {
         UIRegistrationDI.Register(container, uiEnterParams);
@@ -18,24 +18,26 @@ public class UIEntryPoint : MonoBehaviour
         var uiScene = Instantiate(_sceneUIRootPrefab);
         var uiRoot = container.Resolve<UIRootView>();
         uiRoot.AttachSceneUI(uiScene.gameObject);
-        
-        var exitSceneSignalSubj = new Subject<UIExitParams>();
-        var gridSizePicker = uiScene.GetComponentInChildren<GridSizePicker>();
-        var enterParams = new GameUIEnterParams(width, height);
-        if (gridSizePicker != null)
+
+        // 🤝 Сделаем кнопку-выбор стратегии умной
+        var strategySelector = uiScene.GetComponentInChildren<StrategySelector>();
+        if (strategySelector != null)
         {
-            gridSizePicker.OnSizeSelected.Subscribe(newParams =>
+            strategySelector.Init(OnStrategyChosen);
+        }
+
+        Debug.Log($"UI Scene has loaded, waiting for strategy...");
+        return _exitSceneSignalSubj.AsObservable();
+    }
+
+    private void OnStrategyChosen(IGridSizeProvider strategy)
+    {
+        strategy.GetEnterParams()
+            .Subscribe(gameParams =>
             {
-                enterParams = new GameUIEnterParams(newParams.Width, newParams.Height);
-                var exitParams = new UIExitParams(enterParams);
-                exitSceneSignalSubj.OnNext(exitParams);
+                Debug.Log($"Strategy returned: {gameParams.Width}x{gameParams.Height}");
+                var exitParams = new UIExitParams(gameParams);
+                _exitSceneSignalSubj.OnNext(exitParams);
             });
-        }
-        else
-        {
-            Debug.LogWarning("GridSizePicker не найден в UI-префабе!");
-        }
-        Debug.Log($"UI Scene has loaded, with result: {uiEnterParams?.Result}");
-        return exitSceneSignalSubj.AsObservable();
     }
 }

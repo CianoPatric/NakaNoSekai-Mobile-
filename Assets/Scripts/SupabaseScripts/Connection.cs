@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using TMPro;
 using DefaultNamespace;
-using Supabase.Gotrue;
 
 namespace SupabaseScripts
 {
@@ -28,9 +27,8 @@ namespace SupabaseScripts
         public GameObject AuthPrefab;
         public GameObject RegPrefab;
 
-        public GameObject ParkName;
-        private string nameU;
-        private string passwordU;
+        public GameObject CardPrefab;
+        public RectTransform ContextView;
 
         private string ParkN;
         private int IDC;
@@ -43,10 +41,10 @@ namespace SupabaseScripts
             }
             catch (Exception e)
             {
-                Debug.Log("Ой, " + e.Message);
+                Debug.Log("" + e.Message);
             }
         }
-        public async void Connect()
+        public async void Auth()
         {
             try
             {
@@ -58,14 +56,12 @@ namespace SupabaseScripts
                 var conn = await UserDb.AuthenticateUserAsync(supabase, userDb);
                 if (conn)
                 {
-                    nameU = AULogin.GetComponent<TextMeshProUGUI>().text;
-                    passwordU = AUPassword.GetComponent<TextMeshProUGUI>().text;
                     AuthPrefab.SetActive(false);
                 }
             }
             catch (Exception e)
             {
-                Debug.Log("Ой, " + e.Message);
+                Debug.Log("" + e.Message);
             }
         }
         public async void Registr()
@@ -95,7 +91,7 @@ namespace SupabaseScripts
             }
             catch (Exception e)
             {
-                Debug.Log("Ой, " + e.Message);
+                Debug.Log("" + e.Message);
             }
         }
     }

@@ -1,11 +1,9 @@
-using Game.GameRoot;
-
-public class GameUIEnterParams: SceneEnterParams
+public class GameUIEnterParams
 {
     public int Width { get; }
     public int Height { get; }
 
-    public GameUIEnterParams(int width, int height) : base("GameUI")
+    public GameUIEnterParams(int width, int height)
     {
         Width = width;
         Height = height;

@@ -1,10 +1,8 @@
-using Game.GameRoot;
-
 public class UIExitParams
 {
-    public SceneEnterParams TargetSceneEnterParams { get; }
-    public UIExitParams(SceneEnterParams targetScene)
+    public GameUIEnterParams GameUIEnterParams { get; }
+    public UIExitParams(GameUIEnterParams gameUIEnterParams)
     {
-        TargetSceneEnterParams = targetScene;
+        GameUIEnterParams = gameUIEnterParams;
     }
 }

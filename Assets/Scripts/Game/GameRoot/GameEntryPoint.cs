@@ -1,5 +1,4 @@
 using System.Collections;
-using Game.LocalView.Root;
 using R3;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,6 +50,7 @@ public class GameEntryPoint
 #endif
         _coroutines.StartCoroutine(LoadAndStartAPP());
     }
+    // ReSharper disable Unity.PerformanceAnalysis
     private IEnumerator LoadAndStartAPP(UIEnterParams enterParams = null)
     {
         _uiRoot.ShowLoadingScreen();
@@ -62,15 +62,7 @@ public class GameEntryPoint
         var UIContainer = CashContainer = new DIContainer(_rootContainer);
         sceneEntryPoint.Run(UIContainer, enterParams).Subscribe(uiExitParams =>
         {
-            var targetSceneName = uiExitParams.TargetSceneEnterParams.SceneName;
-            if (targetSceneName == "GameUI")
-            {
-                _coroutines.StartCoroutine(LoadAndStartGameUI(uiExitParams.TargetSceneEnterParams.As<GameUIEnterParams>()));   
-            }
-            else
-            {
-                _coroutines.StartCoroutine(LoadAndStartLocalView());
-            }
+            _coroutines.StartCoroutine(LoadAndStartGameUI(uiExitParams.GameUIEnterParams));
         });
         _uiRoot.HideLoadingScreen();
     }
@@ -86,20 +78,6 @@ public class GameEntryPoint
         sceneEntryPoint.Run(gameUIContainer, gameUIEnterParams).Subscribe(gameUIExitParams =>
         {
             _coroutines.StartCoroutine(LoadAndStartAPP(gameUIExitParams.UIEnterParams));
-        });
-        _uiRoot.HideLoadingScreen();
-    }
-
-    private IEnumerator LoadAndStartLocalView(GameUIEnterParams gameUIEnterParams = null)
-    {
-        _uiRoot.ShowLoadingScreen();
-        yield return LoadScene("Boot");
-        yield return LoadScene("LocalView");
-        yield return new WaitForSeconds(0.5f);
-        var sceneEntryPoint = Object.FindFirstObjectByType<LocalViewEntryPoint>();
-        sceneEntryPoint.Run(_uiRoot).Subscribe(gameUIExitParams =>
-        {
-            _coroutines.StartCoroutine(LoadAndStartAPP());
         });
         _uiRoot.HideLoadingScreen();
     }

@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815541413c84cc34fa40aa4b53600865, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabOnCard: {fileID: 7158607408839207249, guid: 0fed78dd56391d34dbeea5bf2b7bcfe1, type: 3}
+  PrefabOnCard: {fileID: 8534769095772107402, guid: 24120b88fb9949c458264d7655064ab6, type: 3}
 --- !u!1 &8815658280441671030
 GameObject:
   m_ObjectHideFlags: 0

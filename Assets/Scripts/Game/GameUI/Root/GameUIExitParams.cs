@@ -1,5 +1,3 @@
-
-
 public class GameUIExitParams
 {
     public UIEnterParams UIEnterParams { get; }
