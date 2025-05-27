@@ -15,7 +15,7 @@ namespace Game.UI.Root
         public Observable<GameUIEnterParams> GetEnterParams()
         {
             return _picker.OnSizeSelected
-                .Select(size => new GameUIEnterParams(size.Width, size.Height));
+                .Select(size => new GameUIEnterParams(size.Width, size.Height, size.GameMode));
         }
     }
 }

@@ -88,7 +88,7 @@ namespace Game.UI.Root.View
 
         public void ApplySelection()
         {
-            _selectionSubject.OnNext(new GameUIEnterParams(_currentSelection.x, _currentSelection.y));
+            _selectionSubject.OnNext(new GameUIEnterParams(_currentSelection.x, _currentSelection.y, true));
         }
     }
 }

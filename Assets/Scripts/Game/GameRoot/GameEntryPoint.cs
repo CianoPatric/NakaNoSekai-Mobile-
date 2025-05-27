@@ -39,7 +39,7 @@ public class GameEntryPoint
         }
         if(sceneName == "GameUI")
         {
-            GameUIEnterParams _gameUIEnter = new GameUIEnterParams(3, 3);
+            GameUIEnterParams _gameUIEnter = new GameUIEnterParams(3, 3, true);
             _coroutines.StartCoroutine(LoadAndStartGameUI(_gameUIEnter));
             return;
         }

@@ -12,7 +12,7 @@ namespace Game.UI.Root
                 .Select(_ =>
                 {
                     var dataFromDb = new Vector2Int(10, 15); // Здесь можно заменить на реальные данные
-                    return new GameUIEnterParams(dataFromDb.x, dataFromDb.y);
+                    return new GameUIEnterParams(dataFromDb.x, dataFromDb.y, false);
                 });
         }
     }
