@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 1379926566526355894}
   - component: {fileID: 6075019897689034891}
   - component: {fileID: 6708329290240743623}
+  - component: {fileID: 7356320328887648803}
   m_Layer: 0
   m_Name: CardPark
   m_TagString: Untagged
@@ -425,3 +426,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7356320328887648803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7801007291234358925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ecab72179f473ab4daa0cb350b927d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Image: {fileID: 1370562979061330255}
+  ParkNameText: {fileID: 7273464760279398632}
+  AuthorNameText: {fileID: 3650652170406505154}

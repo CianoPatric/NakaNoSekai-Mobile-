@@ -26,12 +26,12 @@ public class ParkDb : BaseModel
 
     public ParkDb() { }
 
-    public ParkDb(string namepark, string cardlist, string parktransform, int idcreator)
+    public ParkDb(string Namepark, string Cardlist, string Parktransform, int IdCreator)
     {
-        this.namepark = namepark;
-        this.cardlist = cardlist;
-        this.parktransform = parktransform;
-        this.idcreator = idcreator;
+        namepark = Namepark;
+        cardlist = Cardlist;
+        parktransform = Parktransform;
+        idcreator = IdCreator;
     }
 
     public static async Task<bool> SavePark(Supabase.Client client, ParkDb park)
@@ -59,7 +59,53 @@ public class ParkDb : BaseModel
         {
             var park = await client
                 .From<ParkDb>()
+                .Select("NamePark, IDCreator")
+                .Get();
+            if(park != null)
+            {
+                Debug.Log("Парк был найден");
+                return park;
+            }
+
+            return null;
+        }
+        catch(Exception ex)
+        {
+            Debug.Log("" + ex);
+            return null;
+        }
+    }
+
+    public static async Task<Supabase.Postgrest.Responses.ModeledResponse<ParkDb>> SearchParksByName(Supabase.Client client, string name)
+    {
+        try
+        {
+            var park = await client
+                .From<ParkDb>()
                 .Select("NamePark")
+                .Filter("NamePark", Supabase.Postgrest.Constants.Operator.Equals, name)
+                .Get();
+            if (park != null)
+            {
+                return park;
+            }
+
+            return null;
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("" + ex);
+            return null;
+        }
+    }
+    public static async Task<Supabase.Postgrest.Responses.ModeledResponse<ParkDb>> LoadParkByUserId(Supabase.Client client, int id)
+    {
+        try
+        {
+            var park = await client
+                .From<ParkDb>()
+                .Select("NamePark")
+                .Filter("IDCreator", Supabase.Postgrest.Constants.Operator.Equals, id)
                 .Get();
             if(park != null)
             {

@@ -30,7 +30,7 @@ public class UserDb : BaseModel
         nickname = NickName;
         password = Password;
     }
-
+    
     public static async Task<int> SearchUserID(Client client, UserDb userDb)
     {
         try
@@ -48,6 +48,25 @@ public class UserDb : BaseModel
             Debug.Log("Ошибка9: " + ex.Message);
         }
         return -1;
+    }
+
+    public static async Task<string> SearchNicknameUser(Client client, int idUser)
+    {
+        try
+        {
+            var NickName = await client
+                .From<UserDb>()
+                .Select("NickName")
+                .Filter("UserID", Supabase.Postgrest.Constants.Operator.Equals, idUser)
+                .Single();
+            if (NickName != null) return NickName.nickname;
+        }
+        catch (Exception ex)
+        {
+            Debug.Log("<UNK>9: " + ex.Message);
+        }
+
+        return null;
     }
     public static async Task<bool> AuthenticateUserAsync(Client client, UserDb userA)
     {

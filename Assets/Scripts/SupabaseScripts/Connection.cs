@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DefaultNamespace;
-using UnityEngine.UI;
+using Game.UI;
 
 namespace SupabaseScripts
 {
@@ -96,34 +95,26 @@ namespace SupabaseScripts
                 Debug.Log("" + e.Message);
             }
         }
-
-        public async void SavePark()
-        {
-            
-        }
-        public TMP_Dropdown Listk;
+        
         public async void LoadParks()
         {
             try
             {
-                Listk.GetComponent<Dropdown>();
-                Supabase.Postgrest.Responses.ModeledResponse<ParkDb> b = await ParkDb.LoadParks(supabase);
-                List<string> options = new();
-                foreach(ParkDb s in b.Models)
+                var parks = await ParkDb.LoadParks(supabase);
+                foreach (var park in parks.Models)
                 {
-                    options.Add("" + s.namepark);
+                    var card = Instantiate(CardPrefab, ContextView);
+                    Debug.Log("" + park.idcreator);
+                    var cardView = card.GetComponent<ParkCardView>();
+                    var nickname = await UserDb.SearchNicknameUser(supabase, park.idcreator);
+                    cardView.SetData(null, park.namepark, nickname);
+                    Debug.Log($"{await UserDb.SearchNicknameUser(supabase, park.idcreator)}, {park.namepark}");
                 }
-                Listk.AddOptions(options);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.Log("" + e.Message);
             }
-        }
-
-        public async void ConfirmPark()
-        {
-            
         }
     }
 }

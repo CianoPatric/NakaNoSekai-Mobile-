@@ -18,8 +18,7 @@ public class UIEntryPoint : MonoBehaviour
         var uiScene = Instantiate(_sceneUIRootPrefab);
         var uiRoot = container.Resolve<UIRootView>();
         uiRoot.AttachSceneUI(uiScene.gameObject);
-
-        // 🤝 Сделаем кнопку-выбор стратегии умной
+        
         var strategySelector = uiScene.GetComponentInChildren<StrategySelector>();
         if (strategySelector != null)
         {

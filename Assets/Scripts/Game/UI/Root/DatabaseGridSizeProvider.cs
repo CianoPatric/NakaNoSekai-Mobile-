@@ -11,7 +11,7 @@ namespace Game.UI.Root
             return Observable.Timer(TimeSpan.FromSeconds(0.5f))
                 .Select(_ =>
                 {
-                    var dataFromDb = new Vector2Int(10, 15); // Здесь можно заменить на реальные данные
+                    var dataFromDb = new Vector2Int(10, 15);
                     return new GameUIEnterParams(dataFromDb.x, dataFromDb.y, false);
                 });
         }
